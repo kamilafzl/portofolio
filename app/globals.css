@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/*
+ * ============================================================
+ *  WARNA & FONT
+ *  Ganti kode warna di :root, seluruh website ikut berubah.
+ * ============================================================
+ */
+:root {
+  --page: #f6f9fd; /* latar halaman */
+  --ink: #0d1b2e; /* warna tulisan utama */
+  --muted: #55647a; /* tulisan pelengkap */
+  --line: #dfe7f1; /* garis tipis & border kartu */
+  --brand: #2f6fdb; /* biru utama (tombol, link, highlight) */
+  --brand-soft: #e8f0fc; /* biru muda (latar section) */
+  --sky-top: #3a7fd8; /* langit bagian atas di hero */
+  --sky-mid: #79b0ec;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --font-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
+  --font-script: "Caveat Variable", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
+body {
+  background: var(--page);
+  color: var(--ink);
+}
+::selection {
+  background: var(--brand);
+  color: white;
+}
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+/* ---------- Langit & awan di hero ---------- */
+.sky {
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 62%, #c9e0f8 86%, var(--page) 100%);
+}
+.cloud {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  filter: blur(6px);
+  animation: drift var(--d, 60s) ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { transform: translateX(-3vw); }
+  to { transform: translateX(3vw); }
+}
+
+/* ---------- Orbit ikon di samping avatar ---------- */
+.orbit { animation: spin 60s linear infinite; }
+.orbit-item { animation: spin 60s linear infinite reverse; }
+.orbit-slow { animation-duration: 90s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.float { animation: float 6s ease-in-out infinite; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ---------- Nama besar bertitik di footer ---------- */
+.dotted-text {
+  background-image: radial-gradient(circle, var(--brand) 1.5px, transparent 1.9px);
+  background-size: 6px 6px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- FAQ: tanda + berputar jadi x saat dibuka ---------- */
+details[open] .faq-icon { transform: rotate(45deg); }
+details summary::-webkit-details-marker { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cloud, .orbit, .orbit-item, .float { animation: none; }
+}
