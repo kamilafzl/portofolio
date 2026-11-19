@@ -1,6 +1,6 @@
 # Portofolio Kamila Fazilatunisa
 
-Website portofolio (Next.js + Tailwind). Panduan ini untuk kamu buka, edit, dan deploy sendiri.
+Website portofolio (Next.js + Tailwind).
 
 ---
 
